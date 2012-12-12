@@ -1,0 +1,30 @@
+﻿@model RnD.ExceptionSample.ViewModels.ProductViewModel
+<div id="addProductForm">
+    <fieldset>
+        <legend>Product:</legend>
+        @Html.ValidationSummary(true)
+        <div id="addProductMess" class="error invisible">
+        </div>
+        <div class="editor-field">
+            <strong>@Html.LabelFor(model => model.Name): </strong>
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            <strong>@Html.LabelFor(model => model.Price): </strong>
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            <strong>@Html.LabelFor(model => model.CategoryId, "Category"): </strong>
+            @Html.DropDownList("CategoryId", Model.ddlCategories)
+            @Html.ValidationMessageFor(model => model.CategoryId)
+        </div>
+        <div class="editor-field">
+            <button id="proCreate" class="button">
+                Save
+            </button>
+        </div>
+    </fieldset>
+</div>
+<script src="@Url.Content("~/Scripts/App/product-jq.js")" type="text/javascript"></script>
