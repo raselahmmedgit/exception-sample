@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using RnD.ExceptionSample.Helper;
 using RnD.ExceptionSample.Models;
 using RnD.ExceptionSample.ViewModels;
+using log4net;
 
 namespace RnD.ExceptionSample.Controllers
 {
@@ -13,12 +14,44 @@ namespace RnD.ExceptionSample.Controllers
     {
         private AppDbContext _db = new AppDbContext();
 
+        private readonly ILog _log = LogManager.GetLogger("RollingFileAppender");
+
+        //private readonly ILog _log = LogManager.GetLogger("log4netFileAppender");
+
         //
         // GET: /Logger/
 
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult TextFile()
+        {
+            /*
+             
+                 <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender" >
+                    <param name="File" value="App_Data\log4net.txt" />
+                    <param name="AppendToFile" value="true" />
+                    <rollingStyle value="Size" />
+                    <maxSizeRollBackups value="10" />
+                    <maximumFileSize value="10MB" />
+                    <staticLogFileName value="true" />
+                    <layout type="log4net.Layout.PatternLayout">
+                    <param name="ConversionPattern" value="%date%newline %-5level - %message%newline%newline%newline" />
+                    </layout>
+                  </appender>
+             
+                 <root>
+                    <level value="ALL" />
+                    <appender-ref ref="LogFileAppender" />
+                 </root>
+              
+             */
+
+            var commonMess = "Common Message for all";
+            ViewBag.CommonMess = commonMess;
+            return View("CommonMess");
         }
 
         //
